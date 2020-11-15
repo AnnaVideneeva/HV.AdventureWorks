@@ -36,3 +36,7 @@ steps:
     arguments: '--configuration $(buildConfiguration)'
 
 - task: PublishBuildArtifacts@1
+  displayName: Build Artifacts
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'HV.AdventureWorks'
