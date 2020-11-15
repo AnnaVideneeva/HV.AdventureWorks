@@ -47,5 +47,5 @@ steps:
   displayName: Build Artifacts
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'HV.AdventureWorks'
+    ArtifactName: 'HV.AdventureWorks.Api'
     publishLocation: Container
