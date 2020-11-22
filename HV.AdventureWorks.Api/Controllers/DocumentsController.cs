@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using HV.AdventureWorks.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,8 @@ namespace HV.AdventureWorks.Api.Controllers
     [ApiController]
     public class DocumentsController : ControllerBase
     {
+        private string[] AllowedExtensions { get;  } = new string[] { ".docx", ".doc" };
+
         private readonly IDocumentsService _documentsService;
 
         public DocumentsController(IDocumentsService documentsService)
@@ -26,9 +29,7 @@ namespace HV.AdventureWorks.Api.Controllers
                 return BadRequest("File is not selected");
             }
 
-            var fileExtension = Path.GetExtension(file.FileName);
-
-            if (fileExtension != ".docx" || fileExtension != ".doc")
+            if (!AllowedExtensions.Contains(Path.GetExtension(file.FileName)))
             {
                 return BadRequest("File is not Word document");
             }
