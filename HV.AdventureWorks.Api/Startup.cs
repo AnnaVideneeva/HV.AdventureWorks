@@ -9,13 +9,15 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using HV.AdventureWorks.Services.Configurations;
 using HV.AdventureWorks.Core.Logging.Configurations;
+using HV.AdventureWorks.AzureStorage.Configurations;
+using HV.AdventureWorks.AzureStorage;
 
 namespace HV.AdventureWorks.Api
 {
     public class Startup
     {
         private const string ConnectionStringKey = "DefaultConnection";
-        private const string LoggingFilePathKey = "LoggingFilePath";
+        private const string AzureStorageConnectionStringKey = "AzureStorageConnectionString";
 
         public Startup(IConfiguration configuration)
         {
@@ -28,10 +30,13 @@ namespace HV.AdventureWorks.Api
         {
             services.AddControllers();
 
+            var azureStorageConnectionString = Configuration.GetValue<string>(AzureStorageConnectionStringKey);
+
             services
                 .ConfigureMapper()
                 .ConfigureServices(Configuration.GetConnectionString(ConnectionStringKey))
-                .ConfigureLogger(Configuration.GetValue<string>(LoggingFilePathKey));
+                .ConfigureAzureStorage(azureStorageConnectionString)
+                .ConfigureLogger(StorageAccountFactory.Create(azureStorageConnectionString));
 
             ConfigureSwagger(services);
         }
