@@ -5,10 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MimeTypes" Version="2.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HV.AdventureWorks.AzureStorage\HV.AdventureWorks.AzureStorage.csproj" />
     <ProjectReference Include="..\HV.AdventureWorks.Core.Logging\HV.AdventureWorks.Core.Logging.csproj" />
     <ProjectReference Include="..\HV.AdventureWorks.Services\HV.AdventureWorks.Services.csproj" />
   </ItemGroup>

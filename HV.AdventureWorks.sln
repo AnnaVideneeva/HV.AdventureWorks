@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HV.AdventureWorks.Core.Logg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HV.AdventureWorks.Services.Unit.Tests", "HV.AdventureWorks.Services.Unit.Tests\HV.AdventureWorks.Services.Unit.Tests.csproj", "{66AD0322-CCEC-42D5-A1F3-3556CDCE7B81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HV.AdventureWorks.Data.Unit.Tests", "HV.AdventureWorks.Data.Unit.Tests\HV.AdventureWorks.Data.Unit.Tests.csproj", "{60E4BD58-4746-4DFC-A4C0-DE80C3F31CFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HV.AdventureWorks.Data.Unit.Tests", "HV.AdventureWorks.Data.Unit.Tests\HV.AdventureWorks.Data.Unit.Tests.csproj", "{60E4BD58-4746-4DFC-A4C0-DE80C3F31CFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HV.AdventureWorks.AzureStorage", "HV.AdventureWorks.AzureStorage\HV.AdventureWorks.AzureStorage.csproj", "{A009188D-891B-4FD4-AC16-A87FA50F7C3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{60E4BD58-4746-4DFC-A4C0-DE80C3F31CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60E4BD58-4746-4DFC-A4C0-DE80C3F31CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60E4BD58-4746-4DFC-A4C0-DE80C3F31CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A009188D-891B-4FD4-AC16-A87FA50F7C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A009188D-891B-4FD4-AC16-A87FA50F7C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A009188D-891B-4FD4-AC16-A87FA50F7C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A009188D-891B-4FD4-AC16-A87FA50F7C3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

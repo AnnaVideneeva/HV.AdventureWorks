@@ -16,7 +16,9 @@ namespace HV.AdventureWorks.Services.Configurations
                 .ConfigureUnitOfWork(connectionString)
                 .ConfigureProviders();
 
-            return serviceCollection.AddTransient<IProductsService, ProductsService>();
+            return serviceCollection
+                .AddTransient<IProductsService, ProductsService>()
+                .AddTransient<IDocumentsService, DocumentsService>();
         }
 
         private static IServiceCollection ConfigureUnitOfWork(this IServiceCollection serviceCollection, string connectionString)

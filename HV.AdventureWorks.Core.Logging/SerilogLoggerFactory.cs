@@ -1,13 +1,14 @@
-﻿using Serilog;
+﻿using Microsoft.WindowsAzure.Storage;
+using Serilog;
 
 namespace HV.AdventureWorks.Core.Logging
 {
     public static class SerilogLoggerFactory
     {
-        public static ILogger Create(string loggingFilePath)
+        public static ILogger Create(CloudStorageAccount storage)
         {
             var configuration = new LoggerConfiguration()
-                .WriteTo.File(loggingFilePath);
+                .WriteTo.AzureTableStorage(storage);
 
             return configuration.CreateLogger();
         }
