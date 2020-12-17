@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage.Blob;
 
@@ -7,6 +8,7 @@ namespace HV.AdventureWorks.AzureStorage
     public interface IBlobService
     {
         Task<string> UploadAsync(string containerName, string fileName, byte[] file, string fileMimeType);
+        Task<byte[]> DownloadAsync(string containerName, string storageFileName);
     }
 
     public class BlobService : IBlobService
@@ -35,6 +37,21 @@ namespace HV.AdventureWorks.AzureStorage
             await cloudBlockBlob.UploadFromByteArrayAsync(file, 0, file.Length);
 
             return storageFileName;
+        }
+
+        public async Task<byte[]> DownloadAsync(string containerName, string storageFileName)
+        {
+            var cloudStorageAccount = StorageAccountFactory.Create(_connectionString);
+            var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+            var cloudBlobContainer = cloudBlobClient.GetContainerReference(containerName);
+            var cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(storageFileName);
+
+            using (var stream = new MemoryStream())
+            {
+                await cloudBlockBlob.DownloadToStreamAsync(stream).ConfigureAwait(false);
+
+                return stream.ToArray();
+            }
         }
     }
 }

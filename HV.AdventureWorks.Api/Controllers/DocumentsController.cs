@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using HV.AdventureWorks.Services.Interfaces;
@@ -22,14 +23,16 @@ namespace HV.AdventureWorks.Api.Controllers
 
         [HttpPost]
         [Route("upload")]
-        public async Task<IActionResult> Upload(IFormFile file)
+        public async Task<IActionResult> Upload(IFormFile file, string documentNode)
         {
             if (file == null || file.Length == 0)
             {
                 return BadRequest("File is not selected");
             }
 
-            if (!AllowedExtensions.Contains(Path.GetExtension(file.FileName)))
+            var fileExtension = Path.GetExtension(file.FileName);
+
+            if (!AllowedExtensions.Contains(fileExtension))
             {
                 return BadRequest("File is not Word document");
             }
@@ -42,7 +45,7 @@ namespace HV.AdventureWorks.Api.Controllers
                 fileBytes = ms.ToArray();
             }
 
-            await _documentsService.UploadAsync(file.FileName, fileBytes, MimeTypes.GetMimeType(file.FileName));
+            await _documentsService.UploadToBlobAsync(file.FileName, fileBytes, MimeTypes.GetMimeType(file.FileName), documentNode, fileExtension);
 
             return Ok();
         }

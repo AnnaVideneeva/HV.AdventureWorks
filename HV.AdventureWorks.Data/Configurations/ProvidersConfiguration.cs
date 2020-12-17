@@ -9,7 +9,8 @@ namespace HV.AdventureWorks.Data.Configurations
         public static IServiceCollection ConfigureProviders(this IServiceCollection serviceCollection)
         {
             return serviceCollection
-                .AddTransient<IProductsProvider, ProductsProvider>();
+                .AddTransient<IProductsProvider, ProductsProvider>()
+                .AddTransient<IDocumentsProvider, DocumentsProvider>();
         }
     }
 }
