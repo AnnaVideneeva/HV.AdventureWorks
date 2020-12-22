@@ -16,7 +16,7 @@ namespace HV.AdventureWorks.Api
 {
     public class Startup
     {
-        private const string ConnectionStringKey = "DefaultConnection";
+        private const string AzureDatabaseConnectionStringKey = "AzureDatabaseConnectionString";
         private const string AzureStorageConnectionStringKey = "AzureStorageConnectionString";
 
         public Startup(IConfiguration configuration)
@@ -34,7 +34,7 @@ namespace HV.AdventureWorks.Api
 
             services
                 .ConfigureMapper()
-                .ConfigureServices(Configuration.GetConnectionString(ConnectionStringKey))
+                .ConfigureServices(Configuration.GetValue<string>(AzureDatabaseConnectionStringKey))
                 .ConfigureAzureStorage(azureStorageConnectionString)
                 .ConfigureLogger(StorageAccountFactory.Create(azureStorageConnectionString));
 

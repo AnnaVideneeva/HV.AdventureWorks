@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Text;
+using System.Threading.Tasks;
 using Azure.Storage.Queues;
 
 namespace HV.AdventureWorks.AzureStorage
@@ -19,7 +21,13 @@ namespace HV.AdventureWorks.AzureStorage
 
         public async Task InsertMessageAsync(string queueName, string message)
         {
-            var queue = new QueueClient(_connectionString, queueName);
+            var queue = new QueueClient(
+                _connectionString,
+                queueName,
+                new QueueClientOptions
+                {
+                    MessageEncoding = QueueMessageEncoding.Base64
+                });
 
             await queue.CreateIfNotExistsAsync();
             await queue.SendMessageAsync(message);
